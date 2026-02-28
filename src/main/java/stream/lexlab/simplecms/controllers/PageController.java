@@ -6,7 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import stream.lexlab.simplecms.models.Page;
+import stream.lexlab.simplecms.models.PageSummary;
 import stream.lexlab.simplecms.service.PageService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +21,11 @@ public class PageController {
     }
 
     private final PageService pageService;
+
+    @GetMapping("/all")
+    public ResponseEntity<List<PageSummary>> getShorts(){
+        return ResponseEntity.ok(pageService.getAll());
+    }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Page> loadPageById(@PathVariable Long id) {
