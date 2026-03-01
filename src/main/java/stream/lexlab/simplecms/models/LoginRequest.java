@@ -1,2 +1,3 @@
-package stream.lexlab.simplecms.models;public record LoginRequest() {
-}
+package stream.lexlab.simplecms.models;
+
+public record LoginRequest(String username, String password){};

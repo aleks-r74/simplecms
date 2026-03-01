@@ -1,2 +1,3 @@
-package stream.lexlab.simplecms.models;public record TokenDto() {
-}
+package stream.lexlab.simplecms.models;
+
+public record TokenDto(String token){};

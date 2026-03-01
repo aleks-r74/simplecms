@@ -6,8 +6,8 @@ import stream.lexlab.simplecms.exceptions.PageNotFound;
 import stream.lexlab.simplecms.models.PageSummary;
 import stream.lexlab.simplecms.repositories.PageRepository;
 import stream.lexlab.simplecms.models.Page;
+import stream.lexlab.simplecms.utils.Utils;
 
-import java.text.Normalizer;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,8 +38,7 @@ public class PageService {
     public Page savePage(Page p){
         p.setId(null);
         validate(p);
-        if(p.getSlug() == null)
-            generateSlug(p);
+        if(p.getSlug() == null || p.getSlug().isBlank()) p.setSlug(Utils.toSlug(p.getTitle()));
         return pageRepository.save(p);
     }
 
@@ -73,23 +72,5 @@ public class PageService {
             throw new IllegalArgumentException("Page is not valid. Required: title, content, metaTitle, metaDescription");
     }
 
-    private void generateSlug(Page p) {
-        String title = p.getTitle();
-        if (title == null || title.isBlank()) {
-            p.setSlug(null);
-            return;
-        }
-        String normalized = title.trim()
-                .toLowerCase(Locale.ROOT)
-                .replaceAll("[^a-z0-9\\s-]", "")
-                .replaceAll("\\s+", "-")
-                .replaceAll("-{2,}", "-");
 
-        long timestamp = Instant.now().toEpochMilli();
-        String slug = timestamp + "-" + normalized;
-        if (slug.length() > 128) {
-            slug = slug.substring(0, 128);
-        }
-        p.setSlug(slug);
-    }
 }

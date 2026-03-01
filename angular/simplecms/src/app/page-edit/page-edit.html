@@ -1,0 +1,83 @@
+<div class="card w-full max-w-2xl shadow-lg bg-base-200 p-6 mx-auto">
+  <h2 class="text-2xl font-bold mb-4">
+    {{ pageData ? 'Edit Page' : 'New Page' }}
+  </h2>
+
+  <form [formGroup]="pageForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <div class="form-control mb-4">
+      <label class="label"><span class="label-text">Title</span></label>
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        formControlName="title"
+        placeholder="Page title"
+      />
+    </div>
+
+    <!-- Slug -->
+    <div class="form-control mb-4">
+      <label class="label"><span class="label-text">Slug</span></label>
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        formControlName="slug"
+        placeholder="Optional URL slug (auto-generated if left blank)"
+      />
+    </div>
+
+    <!-- Content -->
+    <div class="form-control mb-4">
+      <label class="label"><span class="label-text">Content</span></label>
+      <textarea
+        class="textarea textarea-bordered w-full"
+        rows="6"
+        formControlName="content"
+        placeholder="Page content (HTML allowed)"
+      ></textarea>
+    </div>
+
+    <!-- Visibility & Order -->
+    <div class="flex gap-4 mb-4">
+      <div class="form-control flex-1">
+        <label class="label"><span class="label-text">Visible</span></label>
+        <select class="select select-bordered w-full" formControlName="isVisible">
+          <option [value]="1">Yes</option>
+          <option [value]="0">No</option>
+        </select>
+      </div>
+
+      <div class="form-control flex-1">
+        <label class="label"><span class="label-text">Order Index</span></label>
+        <input
+          type="number"
+          class="input input-bordered w-full"
+          formControlName="orderIndex"
+        />
+      </div>
+    </div>
+
+    <!-- Meta -->
+    <div class="form-control mb-4">
+      <label class="label"><span class="label-text">Meta Title</span></label>
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        formControlName="metaTitle"
+      />
+    </div>
+
+    <div class="form-control mb-6">
+      <label class="label"><span class="label-text">Meta Description</span></label>
+      <textarea
+        class="textarea textarea-bordered w-full"
+        rows="3"
+        formControlName="metaDescription"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-full">
+      {{ pageData ? 'Save Changes' : 'Create Page' }}
+    </button>
+  </form>
+</div>
