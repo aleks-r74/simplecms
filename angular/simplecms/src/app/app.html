@@ -57,18 +57,18 @@
           class="fixed inset-y-0 left-0 z-50 w-64 bg-base-200 border-r transform transition-transform duration-300 lg:static lg:translate-x-0 lg:w-48 lg:flex lg:flex-col lg:items-center"
           [class.-translate-x-full]="!mobileSidebarOpen"
         >
-          <nav class="menu p-4 mt-16 lg:mt-0" (click)="closeMobileSidebar()">
-            <li><a class="font-medium">About</a></li>
+          <nav class="menu w-full p-4 mt-16 lg:mt-0 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap" (click)="closeMobileSidebar()">
+            <li><a>About</a></li>
             <li>
               <details open>
-                <summary class="font-medium">Projects</summary>
-                <ul>
+                <summary>Projects</summary>
+                <ul class="w-full">
                   <li><a>Simple CMS</a></li>
-                  <li><a>Portfolio API</a></li>
+                  <li><a>Portfolio API012345</a></li>
                 </ul>
               </details>
             </li>
-            <li><a class="font-medium">Contact</a></li>
+            <li><a>Contact</a></li>
           </nav>
         </aside>
 

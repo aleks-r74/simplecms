@@ -7,4 +7,6 @@ export interface Page {
   orderIndex: number;
   metaTitle?: string;
   metaDescription?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
