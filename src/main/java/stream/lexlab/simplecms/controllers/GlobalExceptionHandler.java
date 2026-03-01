@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.sqlite.SQLiteException;
 import stream.lexlab.simplecms.exceptions.PageNotFound;
 
+import java.io.IOException;
 import java.util.Map;
 
 @ControllerAdvice
@@ -24,6 +25,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(SQLiteException.class)
     public ResponseEntity<Map.Entry> handleSQLiteException(SQLiteException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.entry("error",ex.getMessage()));
+    }
+
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<Map.Entry> handleSQLiteException(IOException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.entry("error",ex.getMessage()));
     }
 }
